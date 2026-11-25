@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#F6EBE6">
+  <title>Cuidar · Río Rosa</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <a class="skip" href="#productos">Ir para os sabonetes</a>
+
+  <div id="gate" class="gate">
+    <div class="login-card" id="login-card">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M32 10c8 8 8 15 0 21c-8-6-8-13 0-21z"/>
+          <path d="M32 54c8-8 8-15 0-21c-8 6-8 13 0 21z"/>
+          <path d="M10 32c8-8 15-8 21 0c-6 8-13 8-21 0z"/>
+          <path d="M54 32c-8-8-15-8-21 0c6 8 13 8 21 0z"/>
+          <circle cx="32" cy="32" r="3" fill="currentColor" stroke="none"/>
+        </g>
+      </svg>
+      <h1 translate="no">Río Rosa</h1>
+      <p class="kicker">Cuidado do catálogo</p>
+      <p id="gate-status" class="gate-status">Abrindo o painel…</p>
+
+      <div id="setup" hidden>
+        <p>Antes de entrar, conecte o catálogo ao Supabase. É só uma vez:</p>
+        <ol>
+          <li>Crie um projeto grátis em supabase.com.</li>
+          <li>Em Project Settings → API, copie a Project URL e a chave <strong>anon</strong> ou <strong>publishable</strong>.</li>
+          <li>Cole as duas em <code>config/supabase.js</code>. Não use a chave service_role nem uma chave secret.</li>
+          <li>No SQL Editor, cole o arquivo <code>supabase/schema.sql</code> e execute.</li>
+          <li>Em Authentication → Users, crie um usuário com e-mail e senha, já confirmado.</li>
+          <li>No SQL Editor, execute a instrução do README que coloca o seu e-mail como administrador.</li>
+        </ol>
+        <p class="hint">O passo a passo completo está no README.md. Quando terminar, atualize esta página.</p>
+      </div>
+
+      <form id="login-form" hidden>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="password">Senha</label>
+          <div class="password-row">
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+            <button class="button secondary" type="button" id="toggle-password">Mostrar</button>
+          </div>
+        </div>
+        <p id="login-message" class="form-message" hidden></p>
+        <button class="button" type="submit">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="app" class="admin-app" hidden>
+    <header class="admin-header">
+      <a class="brand" href="../" translate="no">Río Rosa</a>
+      <div class="admin-tools">
+        <a href="../">Ver o catálogo</a>
+        <span id="admin-email" class="admin-email"></span>
+        <button class="button secondary" type="button" id="logout">Sair</button>
+      </div>
+    </header>
+
+    <main class="wrap admin-layout">
+      <section class="panel" aria-labelledby="settings-title">
+        <h2 id="settings-title">Apresentação e preços</h2>
+        <form id="settings-form">
+          <div class="field">
+            <label for="hero-title">Título da capa</label>
+            <input id="hero-title" name="hero_title" maxlength="90" required>
+          </div>
+          <div class="field">
+            <label for="hero-text">Texto de apresentação</label>
+            <textarea id="hero-text" name="hero_text" maxlength="320" rows="4"></textarea>
+          </div>
+          <div class="field">
+            <label for="cover-file">Fotografia da capa</label>
+            <p class="hint">Opcional. Sem foto, fica a ilustração da marca. A imagem é reduzida sozinha antes de salvar.</p>
+            <img id="cover-current" class="cover-current" alt="Capa atual" hidden>
+            <label class="file-button">
+              Escolher fotografia
+              <input id="cover-file" name="cover" type="file" accept="image/*">
+            </label>
+            <div class="preview" data-preview hidden>
+              <img alt="Prévia da capa">
+            </div>
+            <p class="hint" data-photo-meta></p>
+            <button class="button ghost" type="button" id="remove-cover" hidden>Tirar a capa</button>
+          </div>
+          <div class="field">
+            <label for="footer-note">Nota do rodapé</label>
+            <textarea id="footer-note" name="footer_note" maxlength="240" rows="3"></textarea>
+          </div>
+          <div class="split">
+            <div class="field">
+              <label for="instagram">Instagram</label>
+              <input id="instagram" name="instagram" maxlength="40" placeholder="riorosa" autocomplete="off">
+              <p class="hint">Só o usuário, sem o link.</p>
+            </div>
+            <div class="field">
+              <label for="whatsapp">WhatsApp</label>
+              <input id="whatsapp" name="whatsapp" maxlength="24" inputmode="tel" placeholder="48998063538" autocomplete="off">
+              <p class="hint">DDD e número, ou com o 55 na frente. Exemplo: 48 99955-0045.</p>
+            </div>
+          </div>
+          <label class="check">
+            <input type="checkbox" name="show_prices">
+            Mostrar preços no catálogo
+          </label>
+          <div class="field currency-field">
+            <label for="currency">Símbolo da moeda</label>
+            <input id="currency" name="currency" maxlength="4" value="R$" required>
+          </div>
+          <p id="settings-message" class="form-message" hidden></p>
+          <button class="button" type="submit">Salvar apresentação</button>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="create-title">
+        <h2 id="create-title">Novo sabonete</h2>
+        <form id="create-form">
+          <div class="field">
+            <label for="name">Nome do sabonete</label>
+            <input id="name" name="name" maxlength="80" required>
+          </div>
+          <div class="field">
+            <label for="description">Descrição</label>
+            <textarea id="description" name="description" maxlength="280" rows="4"></textarea>
+            <p class="hint">Opcional. Uma ou duas frases que dêem vontade de levar.</p>
+          </div>
+          <div class="field">
+            <label for="price">Preço</label>
+            <input id="price" name="price" inputmode="decimal" placeholder="48,00" autocomplete="off">
+            <p class="hint">Opcional, em reais. Sem ponto de milhar. Exemplo: 48 ou 48,50.</p>
+          </div>
+          <div class="field">
+            <label for="photo">Fotografia</label>
+            <p class="hint">Do computador ou do celular. A foto é reduzida sozinha antes de subir.</p>
+            <label class="file-button">
+              Escolher fotografia
+              <input id="photo" name="photo" type="file" accept="image/*" required>
+            </label>
+            <div class="preview" data-preview hidden>
+              <img alt="Prévia da fotografia">
+            </div>
+            <p class="hint" data-photo-meta></p>
+          </div>
+          <div class="field">
+            <label for="published">Estado</label>
+            <select id="published" name="published">
+              <option value="true">Publicado</option>
+              <option value="false">Oculto</option>
+            </select>
+            <p class="hint">Oculto some do catálogo que os clientes veem.</p>
+          </div>
+          <p id="create-message" class="form-message" hidden></p>
+          <button class="button" type="submit">Publicar sabonete</button>
+        </form>
+      </section>
+
+      <section class="panel product-panel" id="productos" aria-labelledby="products-title">
+        <div class="section-head">
+          <h2 id="products-title">Sabonetes</h2>
+          <p id="admin-count"></p>
+        </div>
+        <p id="list-message" class="form-message" hidden></p>
+        <div id="product-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../config/supabase.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

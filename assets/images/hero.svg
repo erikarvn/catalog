@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1100" fill="none">
+  <rect width="880" height="1100" fill="#F4E7E2"/>
+  <circle cx="450" cy="530" r="292" fill="#FBF6F2"/>
+  <circle cx="450" cy="530" r="236" stroke="#D9B7B4" stroke-width="1.4"/>
+  <path d="M168 790c86-48 176-62 286-28" stroke="#E4C9C4" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M250 250c46 18 78 62 86 118" stroke="#C9A3A8" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M262 292c34 8 54 34 58 66" stroke="#C9A3A8" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M286 248c-2 28 12 46 34 58" stroke="#C9A3A8" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M690 360c-40 24-62 66-64 118" stroke="#C9A3A8" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M676 412c-28 8-44 30-46 58" stroke="#C9A3A8" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M724 386c6 26-4 46-24 60" stroke="#C9A3A8" stroke-width="1.4" stroke-linecap="round"/>
+  <rect x="300" y="300" width="286" height="470" rx="28" fill="#FBF8F4" stroke="#E6D2CB" stroke-width="2"/>
+  <rect x="300" y="478" width="286" height="92" fill="#EBCFCB"/>
+  <g transform="translate(393 348)" stroke="#6F4550" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 4c10 12 10 24 0 34c-10-10-10-22 0-34z"/>
+    <path d="M50 84c10-12 10-24 0-34c-10 10-10 22 0 34z"/>
+    <path d="M10 44c12-10 24-10 34 0c-10 12-22 10-34 0z"/>
+    <path d="M90 44c-12-10-24-10-34 0c10 12 22 10 34 0z"/>
+    <circle cx="50" cy="44" r="4.5" fill="#6F4550" stroke="none"/>
+    <path d="M50 84c-2 18-18 30-20 48"/>
+    <path d="M50 96c16 12 22 26 16 44"/>
+  </g>
+  <text x="443" y="532" text-anchor="middle" font-family="Georgia, serif" font-size="21" letter-spacing="3.5" fill="#6F4550">RÍO ROSA</text>
+</svg>

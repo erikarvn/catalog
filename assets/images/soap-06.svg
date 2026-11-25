@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#F3D9DC"/>
+  <circle cx="400" cy="460" r="230" fill="#FBF8F4" fill-opacity="0.55"/>
+  <rect x="230" y="210" width="340" height="540" rx="30" fill="#FBF8F4"/>
+  <rect x="230" y="452" width="340" height="98" fill="#E7C3C8"/>
+  <g transform="translate(310 268)" stroke="#7C4A52" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M90 140C90 86 90 48 90 12"/>
+    <path d="M90 108c-34-8-50-34-52-58c28 2 46 20 52 58z"/>
+    <path d="M90 86c32-12 52-36 54-60c-30 0-46 20-54 60z"/>
+    <path d="M90 58c-26-8-38-24-36-44c20 2 32 16 36 44z"/>
+  </g>
+  <text x="400" y="510" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" letter-spacing="3.2" fill="#7C4A52">RÍO ROSA</text>
+</svg>
